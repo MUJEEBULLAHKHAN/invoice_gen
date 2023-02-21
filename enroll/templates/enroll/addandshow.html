@@ -1,0 +1,115 @@
+{% extends 'enroll/base2.html' %}
+{% block content %}
+<style>
+  .form-group{
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  h2{
+    background-color: #343a40;
+    border: 1px solid hsl(160, 91%, 9%);
+    color: white;
+  }
+
+  h4{
+    background-color: #28A745;
+    border: 1px solid hsl(160, 91%, 9%);
+    color: white;
+  }
+</style>
+
+<div class="row">
+    <div class="container mt-5">
+        <h2 class="text-center alert">INVOICE GENERATOR</h2>
+<div class="row">    
+ <div class="col-sm-5">
+  <h4 class="text-center alert ">Invoice Information</h4>
+  <form action="" method="POST">
+   {% csrf_token %}
+   <div class="form-group">
+    <label>Invoice Number   رقم الفاتورة</label>
+    {{form.invoice_number}}
+    <label>Terms   مصطلحات</label>
+    {{form.terms}}
+    <label>Sales Man   مندوب مبيعات</label>
+    {{form.sales_man}}
+    <label>Customer Reference   إشارة العملاء</label>
+    {{form.customer_ref}}
+    </div>
+    <h4 class="text-center alert ">Customer Information</h4>
+    <div class="form-group">
+    <label>Customer ID   هوية الزبون</label>
+    {{form.customer_id}}
+    <label>Customer Name   اسم الزبون</label>
+    {{form.customer_name}}
+    <label>Customer Address   عنوان العميل</label>
+    {{form.customer_address}}
+    <label>Customer City    مدينة العميل</label>
+    {{form.customer_city}}
+    <label>Customer Contact Name   اسم جهة اتصال العميل</label>
+    {{form.customer_contact_name}}
+    <label>Customer Contact Telephone   هاتف جهة اتصال العملاء</label>
+    {{form.customer_contact_tel}}
+    <label>Customer Postal Code   الرمز البريدي للعميل</label>
+    {{form.customer_postal_code}}
+    <label>Customer VAT Number   رقم ضريبة القيمة المضافة للعميل</label>
+    {{form.customer_vat_number}}
+    </div>
+    <h4 class="text-center alert ">Seller Information</h4>
+    <div class="form-group">
+    <label>Seller ID    معرف البائع</label>
+    {{form.seller_id}}
+    <label>Seller Name    البائع اسم</label>
+    {{form.seller_name}}
+    <label>Seller Address    عنوان البائع</label>
+    {{form.seller_address}}
+    <label>Seller City    مدينة البائع</label>
+    {{form.seller_city}}
+    <label>Seller Contact Name    اسم جهة اتصال البائع</label>
+    {{form.seller_contact_name}}
+    <label>Seller Contact Telephone    هاتف الاتصال بالبائع</label>
+    {{form.seller_contact_tel}}
+    <label>Seller Postal Code   رمز البائع البريدي</label>
+    {{form.seller_postal_code}}
+    <label>Seller VAT Number   رقم ضريبة القيمة المضافة للبائع</label>
+    {{form.seller_vat_number}}
+    <label>Seller IBAN Number   رقم IBAN للبائع</label>
+    {{form.seller_IBAN}}
+    </div>
+    <h4 class="text-center alert ">Vehicle Information</h4>
+    <div class="form-group">
+    <label>Vehicle Make   صناعة المركبات</label>
+    {{form.vehicle_make}}
+    <label>Vehicle Model   طراز السيارة</label>
+    {{form.vehicle_model}}
+    <label>Vehicle Model Year   سنة صنع السيارة</label>
+    {{form.vehicle_model_year}}
+    <label>Vehicle Plate Information   معلومات لوحة المركبة</label>
+    {{form.vehicle_plate_info}}
+    <label>Vehicle VIN Number   رقم VIN للمركبة</label>
+    {{form.vehicle_vin}}
+    </div>
+    <h4 class="text-center alert ">Insurance Information</h4>
+    <div class="form-group">
+    <label>Claim Number   رقم المطالبة</label>
+    {{form.claim_number}}
+    <label>Insurance Name   اسم التأمين</label>
+    {{form.insurance_name}}
+    <label>Assessor Name   اسم المقيم</label>
+    {{form.assessor_name}}
+  </div>
+   <input type="submit" class="btn btn-success" value="Submit">
+  </form>
+
+</div>
+ </div>
+</div>
+
+{% endblock content %}
+
+
+
+f"Invoice Information \n Invoice ID : {i1.invoice_id} \n Invoice Number : {i1.invoice_number} \n Date & Time : {i1.date_time} \n Issue Date : {i1.issue_date} \n Supply Date : {i1.supply_date} \n Terms : {i1.terms} \n Sales Man : {i1.sales_man} \n Customer Reference : {i1.customer_ref} \n Customer Information \n Customer ID : {i1.customer_id} \n Customer Name : {i1.customer_name} \n Customer Address : {i1.customer_address} \n Customer City : {i1.customer_city} \n Customer Contact Name : {i1.customer_contact_name} \n Customer Contact Telephone : {i1.customer_contact_tel} \n Customer Postal Code : {i1.customer_postal_code} \n Customer VAT Number : {i1.customer_vat_number} \n Seller Information \nSeller ID : {i1.seller_id} \n Seller Name : {i1.seller_name} \n Seller Address : {i1.seller_address} \n Seller City : {i1.seller_city} \n Seller Contact Name : {i1.seller_contact_name} \n Seller Contact Telephone : {i1.seller_contact_tel} \n Seller Postal Code : {i1.seller_postal_code} \n Seller VAT Number : {i1.seller_vat_number} \n Seller IBAN Number : {i1.seller_IBAN} \n Vehicle Information \n Vehicle Make : {i1.vehicle_make} \n Vehicle Model : {i1.vehicle_model} \n Vehicle Model Year : {i1.vehicle_model_year} \n Vehicle Plate Information : {i1.vehicle_plate_info} \n Vehicle VIN Number : {i1.vehicle_vin} \n Insurance Information \n Claim Number : {i1.claim_number} \n Insurance Name : {i1.insurance_name} \n Assessor Name : {i1.assessor_name} \n Line Items : {i1.line_item}"
+
+f"Item ID : {c.item_id} \n Item Code : {c.item_code} \n Item Name : {c.item_name} \n Pack : {c.pack} \n Quantity : {c.quantity} \n Unit Price : {c.unit_price} \n Taxable Amount : {c.taxable_amount} \n Discount : {c.discount} \n Tax Rate : {c.tax_rate} \n Tax Amount : {c.tax_amount} \n Item Subtotal Including VAT : {c.item_sub_total_including_vat} \n Total Excluding VAT : {c.total_excluding_vat} \n Total Discount : {c.total_discount} \n Total Taxable Amount Excluding VAT : {c.total_taxable_amount_excluding_vat} \n Net Excluding VAT : {c.net_excluding_VAT} \n Total VAT 15% : {c.total_vat_15perc} \n Net Amount : {c.net_amount} \n Excess Amount + VAT : {c.excess_amount_plus_VAT} \n Deprecation Amount + VAT : {c.deprecation_amount_plus_VAT} \n Total Amount Due : {c.total_amount_due} \n Remarks : {c.remarks}"

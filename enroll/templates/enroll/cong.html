@@ -1,0 +1,36 @@
+{% extends 'enroll/base2.html' %}
+{% block content %}
+<style>
+    .form-group{
+      border: 1px solid #ced4da;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    h2{
+      background-color: #343a40;
+      border: 1px solid hsl(160, 91%, 9%);
+      color: white;
+    }
+  
+    h4{
+      background-color: #28A745;
+      border: 1px solid hsl(160, 91%, 9%);
+      color: white;
+    }
+  </style>
+<div class="row">
+    <div class="container mt-5">
+        <h2 class="text-center alert alert-primary">Congratulations! your invoice number is {{invoice_data.invoice_number}}</h2>
+    <br>
+    <div class="row">    
+        <div class="col-sm-5">
+            <br><br><br>
+            <h4 class="text-center alert alert-warning">Do you want to add Line Items? </h4><br><br><br><a href="{% url 'calculate' invoice_data.invoice_id %}"><input type="button" class="btn btn-success" value="Add Line Items"></a></div><div class="col-sm-2"><br><br><br><h1 class="text-center">OR</h1></div> <div class="col-sm-5"><br><br><br><h4 class="text-center alert alert-warning">Generate QR_CODE & Invoice</h4><br><br><br><a href="{% url 'generate_qr_nli' invoice_data.invoice_id %}"><input type="button" class="btn btn-success" value="Generate QR"></a></div>
+        
+    </div>        
+    </div>
+</div>
+{% endblock content %}
+
+
+

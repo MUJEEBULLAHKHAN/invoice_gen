@@ -1,0 +1,26 @@
+{% extends 'enroll/base2.html' %}
+{% block content %}
+<style>
+h4{
+    background-color: #28A745;
+    border: 1px solid hsl(160, 91%, 9%);
+    color: white;
+  }
+</style>
+<div class="row">
+    <div class="container mt-5">
+        <h4 class="text-center alert alert-primary">Your QR ID is {{img.qr_id}}</h4>
+        <br>
+    <div class="row">    
+        <div class="col-sm-5">
+            <br>
+            <img src="{{img.image.url}}" alt="can't show" style="float: center; margin-right: 15px; width:500px;height:500px;"></div><br><div class="col-sm-2"><br><br><br><h1 class="text-center">OR</h1></div><div class="col-sm-5"><br><br><br><a href="{% url 'generate_inv_nli' invoice_data.invoice_id %}"><input type="button" class="btn btn-success" value="Show Invoice"></a></div>
+        </div>
+        
+    </div>   
+        
+        </div>    
+</div>
+</div>
+</div>
+{% endblock content %}

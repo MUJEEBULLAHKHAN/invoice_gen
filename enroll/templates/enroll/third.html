@@ -1,0 +1,148 @@
+{% extends 'enroll/base2.html' %}
+{% block content %}
+<style>
+  .form-group{
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  h2{
+    background-color: #343a40;
+    border: 1px solid hsl(160, 91%, 9%);
+    color: white;
+  }
+
+  h4{
+    background-color: #28A745;
+    border: 1px solid hsl(160, 91%, 9%);
+    color: white;
+  }
+</style>
+<div class="row">
+    <div class="container mt-5">
+      <h2 class="text-center alert">INVOICE GENERATOR</h2>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  
+  
+  </style>
+<div class="row">
+ <div class="col-sm-4">
+  <h4 class="text-center alert ">Line Items Calculations</h4>
+  <form action="" method="POST">
+   {% csrf_token %}
+    <div class="form-group">
+    <label>Total Excluding VAT   الإجمالي باستثناء ضريبة القيمة المضافة</label>
+    {{worm.total_excluding_vat}}
+    <label>Total Discount   إجمالي الخصم</label>
+    {{worm.total_discount}}
+    <label>Total Taxable Amount Excluding VAT   إجمالي المبلغ الخاضع للضريبة  باستثناء الضريبة على القيمة المضافة</label>
+    {{worm.total_taxable_amount_excluding_vat}}
+    <label>Net Excluding VAT   صافي باستثناء ضريبة القيمة المضافة</label>
+    {{worm.net_excluding_VAT}}
+    <label>Total VAT 15%   إجمالي ضريبة القيمة المضافة 15٪</label>
+    {{worm.total_vat_15perc}}
+    <label>Net Amount   كمية الشبكة</label>
+    {{worm.net_amount}}
+    <label>Excess Amount + VAT   المبلغ الزائد + ضريبة القيمة المضافة</label>
+    {{worm.excess_amount_plus_VAT}}
+    <label>Deprecation Amount + VAT   مبلغ الإيقاف + ضريبة القيمة المضافة</label>
+    {{worm.deprecation_amount_plus_VAT}}
+    <label>Total Amount Due   إجمالي المبلغ المستحق</label>
+    {{worm.total_amount_due}}
+    </div>
+    <div class="form-group">
+    <h4 class="text-center alert ">Remarks</h4>
+    <label>Remarks   ملاحظات</label>
+    {{worm.remarks}}
+  </div>
+   <input type="submit" class="btn btn-success" value="Save Calculations">
+  </form>
+  <br>
+  
+ </div>
+ <div class="col-sm-8">
+  {% if line_items_data %}
+  <h4 class="text-center alert">Your Line Item Details</h4>
+  <div style= "white-space: nowrap; overflow-x: scroll; overflow-y: scroll;">
+  <table class="table table-hover" >
+    <tr>
+      <th scope="row" colspan="12">Line Items</th>
+      <th scope="row" colspan="12">البنود</th>
+    </tr>
+    <tr>
+      <th>Invoice Number</th>
+      <th>Item ID</th>
+        <th>Item Code   رمز الصنف</th>
+        <th>Item Name   اسم العنصر</th>
+        <th>Pack   رزمة</th>
+        <th>Quantity   كمية</th>
+        <th>Unit Price   سعر الوحدة</th>
+        <th>Taxable Amount   المبلغ الخاضع للضريبة</th>
+        <th>Discount   تخفيض</th>
+        <th>Tax Rate   معدل الضريبة</th>
+        <th>Tax Amount   قيمة الضريبة</th>
+        <th>Item Subtotal Including VAT   إجمالي البند بما في ذلك ضريبة القيمة المضافة</th>
+        <th>Total Excluding VAT   الإجمالي باستثناء ضريبة القيمة المضافة</th>
+        <th>Total Discount   إجمالي الخصم</th>
+        <th>Total Taxable Amount Excluding VAT   إجمالي المبلغ الخاضع للضريبة  باستثناء الضريبة على القيمة المضافة</th>
+        <th>Net Excluding VAT   صافي باستثناء ضريبة القيمة المضافة</th>
+        <th>Total VAT 15%   إجمالي ضريبة القيمة المضافة 15٪</th>
+        <th>Net Amount   كمية الشبكة</th>
+        <th>Excess Amount + VAT   المبلغ الزائد + ضريبة القيمة المضافة</th>
+        <th>Deprecation Amount + VAT   مبلغ الإيقاف + ضريبة القيمة المضافة</th>
+        <th>Total Amount Due   إجمالي المبلغ المستحق</th>
+        <th>Remarks   ملاحظات</th>
+        <th scope="row" colspan="2">Actions   أجراءات</th>
+      </tr>
+      {% for lii in line_items_data %}
+      <tr>
+        <td>{{lii.invoice}}</td>
+        <td>{{lii.item_id}}</td>
+        <td>{{lii.item_code}}</td>
+        <td>{{lii.item_name}}</td>
+        <td>{{lii.pack}}</td>
+        <td>{{lii.quantity}}</td>
+        <td>{{lii.unit_price}}</td>
+        <td>{{lii.taxable_amount}}</td>
+        <td>{{lii.discount}}</td>
+        <td>{{lii.tax_rate}}</td>
+        <td>{{lii.tax_amount}}</td>
+        <td>{{lii.item_sub_total_including_vat}}</td>
+        <td>{{lii.total_excluding_vat}}</td>
+        <td>{{lii.total_discount}}</td>
+        <td>{{lii.total_taxable_amount_excluding_vat}}</td>
+        <td>{{lii.net_excluding_VAT}}</td>
+        <td>{{lii.total_vat_15perc}}</td>
+        <td>{{lii.net_amount}}</td>
+        <td>{{lii.excess_amount_plus_VAT}}</td>
+        <td>{{lii.deprecation_amount_plus_VAT}}</td>
+        <td>{{lii.total_amount_due}}</td>
+        <td>{{lii.remarks}}</td>
+        <td><a href="{% url 'updatedata' line_items_data2.item_id %}"><input type="button" class="btn btn-info" value="Edit" disabled></a></td>
+          <td><form action="{% url 'deletedata' line_items_data2.item_id %}" method="post" class="d-inline" >
+            {% csrf_token %}
+          <input type="submit" class="btn btn-danger" value="Remove" disabled>
+        </form>  
+        </td>
+      </tr>
+      {% endfor %}
+  </table>  
+</div>
+  {% else %}
+   <h4 class="text-center alert alert-primary">You don't have added any line item yet!</h4>
+  {% endif %}
+</div>
+</div>
+{% endblock content %}

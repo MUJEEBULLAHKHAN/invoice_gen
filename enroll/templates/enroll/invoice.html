@@ -1,0 +1,237 @@
+{% extends 'enroll/base.html'%}
+{%block content%}
+{% load static %}
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    
+    </style>
+<div style="border: 1px solid black; padding: 10px;">
+<div><img src="{% static 'enroll/tamam.jpg' %}" alt="Sunflower" style="float: left; margin-left: 15px; width:200px;height:200px;"><h1 style="text-align: center;">Tax Invoice   فاتورة ضريبية
+    <img src="4.jpg" alt="Sunflower" style="float: right; margin-right: 15px; width:200px;height:200px;"></h1>
+</div>
+<br><br>
+<br><br><br><br>
+<br><br>
+<div>
+    <!-- table 1 for invoice number information  -->
+    <table>
+        <tr>
+          <th>Invoice Number</th>
+          <th>{{data.invoice_number}}</th>
+          <th>{{data.invoice_number}}</th>
+          <th>رقم الفاتورة</th>
+        </tr>
+      </table>
+      <br>
+      <!-- table 2 for date -->
+      <table>
+        <tr>
+          <th>Invoice Issue Date</th>
+          <th>{{data.date_time}}</th>
+          <th>{{data.date_time}}</th>
+          <th>تاريخ إصدار الفاتورة</th>
+        </tr>
+        <tr>
+            <th>Date of Supply</th>
+            <th>{{data.date_time}}</th>
+            <th>{{data.date_time}}</th>
+            <th>تاريخ التوريد</th>
+          </tr>
+      </table>
+      <br>
+      <!-- table 3 for seller and buyer  -->
+      <table>
+        <tr>
+          <th>Seller</th>
+          <th></th>
+          <th></th>
+          <th>تاجر</th>
+          <th>Buyer</th>
+          <th></th>
+          <th></th>
+          <th>مشتر</th>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{data.bill_to_name}}</td>
+            <td>{{data.bill_to_name}}</td>
+            <td>فاتورة الاسم</td>
+            <td>Name</td>
+            <td>{{data.workshop_name}}</td>
+            <td>{{data.workshop_name}}</td>
+            <td>اسم الورشة</td>
+          </tr>
+          <tr>
+            <td>Building No</td>
+            <td>{{data.bill_to_building_no}}</td>
+            <td>{{data.bill_to_building_no}}</td>
+            <td>فاتورة لرقم المبنى</td>
+            <td>Building No</td>
+            <td>{{data.workshop_building_no}}</td>
+            <td>{{data.workshop_building_no}}</td>
+            <td>رقم مبنى الورشة</td>
+          </tr>
+          <tr>
+            <td>Street Name</td>
+            <td>{{data.bill_to_street_name}}</td>
+            <td>{{data.bill_to_street_name}}</td>
+            <td>فاتورة لاسم الشارع</td>
+            <td>Street Name</td>
+            <td>{{data.workshop_street_name}}</td>
+            <td>{{data.workshop_street_name}}</td>
+            <td>اسم شارع ورشة العمل</td>
+          </tr>
+          <tr>
+            <td>District</td>
+            <td>{{data.bill_to_disctrict}}</td>
+            <td>{{data.bill_to_disctrict}}</td>
+            <td>مشروع قانون للمقاطعة</td>
+            <td>District</td>
+            <td>{{data.workshop_disctrict}}</td>
+            <td>{{data.workshop_disctrict}}</td>
+            <td>منطقة ورشة العمل</td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td>{{data.bill_to_city}}</td>
+            <td>{{data.bill_to_city}}</td>
+            <td>فاتورة للمدينة</td>
+            <td>City</td>
+            <td>{{data.workshop_city}}</td>
+            <td>{{data.workshop_city}}</td>
+            <td>مدينة الورشة</td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td>{{data.bill_to_country}}</td>
+            <td>{{data.bill_to_country}}</td>
+            <td>فاتورة للبلد</td>
+            <td>Country</td>
+            <td>{{data.workshop_country}}</td>
+            <td>{{data.workshop_country}}</td>
+            <td>بلد ورشة العمل</td>
+          </tr>
+          <tr>
+            <td>Postal Code</td>
+            <td>{{data.bill_to_postal_code}}</td>
+            <td>{{data.bill_to_postal_code}}</td>
+            <td>فاتورة للرمز البريدي</td>
+            <td>Postal Code</td>
+            <td>{{data.workshop_postal_code}}</td>
+            <td>{{data.workshop_postal_code}}</td>
+            <td>الرمز البريدي لورشة العمل</td>
+          </tr>
+          <tr>
+            <td>Additional No</td>
+            <td>{{data.bill_to_additional_no}}</td>
+            <td>{{data.bill_to_additional_no}}</td>
+            <td>فاتورة لرقم إضافي</td>
+            <td>Additional No</td>
+            <td>{{data.workshop_additional_no}}</td>
+            <td>{{data.workshop_additional_no}}</td>
+            <td>رقم ورشة العمل الإضافي</td>
+          </tr>
+          <tr>
+            <td>VAT Number</td>
+            <td>{{data.bill_to_vat_number}}</td>
+            <td>{{data.bill_to_vat_number}}</td>
+            <td>فاتورة لرقم ضريبة القيمة المضافة</td>
+            <td>VAT Number</td>
+            <td>{{data.workshop_vat_number}}</td>
+            <td>{{data.workshop_vat_number}}</td>
+            <td>رقم ضريبة القيمة المضافة لورشة العمل</td>
+          </tr>
+          <tr>
+            <td>Other Seller ID</td>
+            <td>{{data.bill_to_other_seller_id}}</td>
+            <td>{{data.bill_to_other_seller_id}}</td>
+            <td>معرف البائع الآخر</td>
+            <td>Other Buyer ID</td>
+            <td>{{data.workshop_other_seller_id}}</td>
+            <td>{{data.workshop_other_seller_id}}</td>
+            <td>معرف المشتري الآخر</td>
+          </tr>
+      </table>
+      <br>
+      <!-- table 4 for line items  -->
+      <table>
+        <tr>
+          <th>Line Items</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>البنود</th>
+        </tr>
+        <tr>
+            <th>Nature of Goods or Services   طبيعة السلع أو الخدمات</th>
+            <th>Unit Price   سعر الوحدة</th>
+            <th>Quantity   كمية</th>
+            <th>Taxable Amount   المبلغ الخاضع للضريبة</th>
+            <th>Discount   تخفيض</th>
+            <th>Tax Rate   معدل الضريبة</th>
+            <th>Tax Amount   قيمة الضريبة</th>
+            <th>Item Subtotal (Including VAT)   المجموع الفرعي للبند (متضمنًا ضريبة القيمة المضافة)</th>
+          </tr>
+          <tr>
+            <td>{{bg.nature}}</td>
+            <td>{{bg.unit_price}}</td>
+            <td>{{bg.quantity}}</td>
+            <td>{{bg.taxable_amount}}</td>
+            <td>{{bg.discount}}</td>
+            <td>{{bg.tax_rate}}</td>
+            <td>{{bg.tax_amount}}</td>
+            <td>{{bg.item_sub_total_including_vat}}</td>
+          </tr>
+      </table>
+      <br>
+      <table>
+        <tr>
+          <th>Total Amounts</th>
+          <th></th>
+          <th>المبالغ الإجمالية</th>
+        </tr>
+          <tr>
+            <td>Total (Excluding VAT)</td>
+            <td>value</td>
+            <td>الإجمالي (باستثناء ضريبة القيمة المضافة)</td>
+          </tr>
+          <tr>
+            <td>Discount</td>
+            <td>value</td>
+            <td>تخفيض</td>
+          </tr>
+          <tr>
+            <td>Total Taxable Amount(Excluding VAT)</td>
+            <td>value</td>
+            <td>إجمالي المبلغ الخاضع للضريبة (باستثناء ضريبة القيمة المضافة)</td>
+          </tr>
+          <tr>
+            <td>Total VAT</td>
+            <td>value</td>
+            <td>إجمالي ضريبة القيمة المضافة</td>
+          </tr>
+          <tr>
+            <td>Total Amount Due</td>
+            <td>value</td>
+            <td>إجمالي المبلغ المستحق</td>
+          </tr>
+      </table>
+</div>
+</div>
+<br><br><a href="{% url 'pdf' %}"><input type="button" class="btn btn-info" value="Download Invoice   تحميل فاتورة"></a><br><br><br>
+
+{%endblock content%}

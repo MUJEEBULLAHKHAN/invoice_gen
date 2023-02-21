@@ -1,0 +1,337 @@
+{% extends 'enroll/base.html'%}
+{%block content%}
+{% load static %}
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    .button {
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button1 {
+  background-color: red; 
+  color: white; 
+  border: 2px solid red;
+  border-radius: 5px;
+}
+
+.button1:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+
+.button2 {
+  background-color: black; 
+  color: white; 
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.button2:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+  
+@media print {
+  #noPrint{
+    display:none;
+  }
+}
+    </style>
+<div id="element">
+<img src="{% static 'enroll/360logo.png' %}" alt="Sunflower" style="float: left;"><br><br><br><h3 style="text-align: center;">Tax Invoice   فاتورة ضریبیة
+    </h3>
+    <hr>
+    <!-- table 1 for invoice number information  -->
+    <div style="border: 1px solid black; padding: 10px;">
+        <div class="row">
+            <div class="col-sm-6">
+    <table>
+        <tr>
+          <th>Issue Date</th>
+          <th>{{invoice_data.issue_date}}</th>
+          <th>تاريخ الإصدار</th>
+        </tr>
+        <tr>
+            <th>Terms</th>
+            <th>{{invoice_data.terms}}</th>
+            <th>مصطلحات</th>
+          </tr>
+      </table>
+    </div>
+    <div class="col-sm-6">
+        <table>
+            <tr>
+              <th>Invoice Number</th>
+              <th>{{invoice_data.invoice_number}}</th>
+              <th>رقم الفاتورة</th>
+            </tr>
+            <tr>
+                <th>Customer Reference</th>
+                <th>{{invoice_data.customer_ref}}</th>
+                <th>إشارة العملاء</th>
+              </tr>
+            <tr>
+                <th>Sales Man</th>
+                <th>{{invoice_data.sales_man}}</th>
+                <th>مندوب مبيعات</th>
+              </tr>
+          </table>
+        </div>
+    </div>
+      <br>
+      <!-- table 2 for date -->
+      <table>
+        <tr>
+            <th colspan="3">Customer Details   تفاصيل العميل</th>
+            <th colspan="3">Seller Details   تفاصيل البائع</th>
+        </tr>
+        <tr>
+            <th>اسم العميل</th>
+            <th colspan="2">{{invoice_data.customer_name}}</th>
+            <th colspan="2">{{invoice_data.seller_name}}</th>
+            <th>اسم البائع</th>
+        </tr>
+        <tr>
+            <th>Customer Name</th>
+            <th colspan="2">{{invoice_data.customer_name}}</th>
+            <th colspan="2">{{invoice_data.seller_name}}</th>
+            <th>Seller Name</th>
+        </tr>
+        <tr>
+            <th>العنوان</th>
+            <th colspan="2">{{invoice_data.customer_address}}</th>
+            <th colspan="2">{{invoice_data.seller_address}}</th>
+            <th>العنوان</th>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <th colspan="2">{{invoice_data.customer_address}}</th>
+            <th colspan="2">{{invoice_data.seller_address}}</th>
+            <th>Address</th>
+        </tr>
+        <tr>
+            <th>City   مدينة</th>
+            <th colspan="2">{{invoice_data.customer_city}}</th>
+            <th colspan="2">{{invoice_data.seller_city}}</th>
+            <th>City   مدينة</th>
+        </tr>
+        <tr>
+            <th>Contact Name</th>
+            <th colspan="2">{{invoice_data.customer_contact_name}}</th>
+            <th colspan="2">{{invoice_data.seller_contact_name}}</th>
+            <th>Contact Name</th>
+        </tr>
+        <tr>
+            <th>Contact Tel</th>
+            <th>{{invoice_data.customer_contact_tel}}</th>
+            <th>ھاتف العمیل</th>
+            <th>Contact Tel</th>
+            <th>{{invoice_data.seller_contact_tel}}</th>
+            <th>الھاتف</th>
+        </tr>
+        <tr>
+            <th>Postal Code</th>
+            <th>{{invoice_data.customer_postal_code}}</th>
+            <th>رقم البرید</th>
+            <th>Postal Code</th>
+            <th>{{invoice_data.seller_postal_code}}</th>
+            <th>رقم البرید</th>
+        </tr>
+        <tr>
+            <th>VAT Number</th>
+            <th>{{invoice_data.customer_vat_number}}</th>
+            <th>رقم تسجیل ضریبة القیمة المضافة</th>
+            <th>VAT Number</th>
+            <th>{{invoice_data.seller_vat_number}}</th>
+            <th>رقم تسجیل ضریبة القیمة المضافة</th>
+        </tr>
+        <tr>
+            <th>Customer ID</th>
+            <th>{{invoice_data.customer_id}}</th>
+            <th>كود العمیل</th>
+            <th colspan="2">IBAN : {{invoice_data.seller_IBAN}}</th>
+            <th>IBAN</th>
+        </tr>
+      </table>
+      <br>
+      <table>
+        <tr>
+            <th colspan="6" style="text-align: center;">Vehicle Details   بیانات المطالبة</th>
+        </tr>
+        <tr>
+            <th>Vehicle Model</th>
+            <th>{{invoice_data.vehicle_make}}</th>
+            <th>مودیل المركبة</th>
+            <th>Vehicle Make</th>
+            <th>{{invoice_data.vehicle_model}}</th>
+            <th>نوع المركبة</th>
+        </tr>
+        <tr>
+            <th>Plate Number</th>
+            <th>{{invoice_data.vehicle_plate_info}}</th>
+            <th>رقم اللوحة</th>
+            <th>Year Model</th>
+            <th>{{invoice_data.vehicle_model_year}}</th>
+            <th>سنة الصنع</th>
+        </tr>
+        <tr>
+            <th>Assessor Number</th>
+            <th>{{invoice_data.assessor_name}}</th>
+            <th>رقم المقيم</th>
+            <th>Claim Number</th>
+            <th>{{invoice_data.claim_number}}</th>
+            <th>رقم المطالبة</th>
+        </tr>
+        </table>
+        <br>
+      <!-- table 3 for seller and buyer  -->
+      {% if line_items %}
+      <table>
+        <tr>
+          <th>Sub Total الإجمـــــالي</th>
+          <th>Discount % خصومات</th>
+          <th>Unit Price سعـر الوحدة</th>
+          <th>Quantity كمیة</th>
+          <th>Pack الوحــــدة</th>
+          <th>Item Name إسم الصنف</th>
+          <th>Item Code رقم الصنف</th>
+          <th>No م</th>
+        </tr>
+        {% for bg in line_items %}
+          <tr>
+            <td>{{bg.item_sub_total_including_vat}}</td>
+            <td>{{bg.discount}}</td>
+            <td>{{bg.unit_price}}</td>
+            <td>{{bg.quantity}}</td>
+            <td>{{bg.pack}}</td>
+            <td>{{bg.item_name}}</td>
+            <td>{{bg.item_code}}</td>
+            <td>{{bg.item_id}}</td>
+          </tr>
+          {% endfor %}
+      </table>
+      {% endif %}
+      <br>
+      <div class="row">
+        <div class="col-sm-8">
+      <table>
+        <tr>
+            <th colspan="3" style="text-align: center;">Calculations   العمليات الحسابية</th>
+          </tr>
+          <tr>
+            <td>Total (Excluding VAT)</td>
+            <td>{{pr.total_excluding_vat}}</td>
+            <td>الإجمالي غیر شامل ضریبة المضافة</td>
+          </tr>
+          <tr>
+            <td>Discount</td>
+            <td>{{pr.total_discount}}</td>
+            <td>خصومات</td>
+          </tr>
+          <tr>
+            <td>Total Taxable Amount Excluding VAT</td>
+            <td>{{pr.total_taxable_amount_excluding_vat}}</td>
+            <td>إجمالي المبلغ الخاضع للضريبة باستثناء ضريبة القيمة المضافة</td>
+          </tr>
+          <tr>
+            <td>Net (Excluding VAT)</td>
+            <td>{{pr.net_excluding_VAT}}</td>
+            <td>الصافي غیر شامل ضریبة المضافة</td>
+          </tr>
+          <tr>
+            <td>Total VAT 15 %</td>
+            <td>{{pr.total_vat_15perc}}</td>
+            <td>مجموعة ضریبة القیمة المضافة % 15</td>
+          </tr>
+          <tr>
+            <td>Net Amount</td>
+            <td>{{pr.net_amount}}</td>
+            <td>صافي القیمة</td>
+          </tr>
+          <tr>
+            <td>Excess Amount + VAT</td>
+            <td>{{pr.excess_amount_plus_VAT}}</td>
+            <td>مبلغ التحمل شامل الضریبة</td>
+          </tr>
+          <tr>
+            <td>Depreciation Amount + VAT</td>
+            <td>{{pr.deprecation_amount_plus_VAT}}</td>
+            <td>مبلغ االستھالك شامل الضریبة</td>
+          </tr>
+          <tr>
+            <td>Total Amount Due</td>
+            <td>{{pr.total_amount_due}}</td>
+            <td>إجمالي المبلغ المستحق</td>
+          </tr>
+      </table>
+        </div>
+            <div class="col-sm-4">
+                <table>
+                    <th>
+                <img src="{{img.image.url}}" alt="can't show" style="float: right; margin-right: 15px; width:300px;height:300px;">
+            </th></table>    
+            </div>
+                </div>
+                <br>
+                <table>
+                    <tr>
+                        <th>Remarks</th>
+                        <th rowspan="2">{{pr.remarks}}</th>
+                      </tr>
+                      <tr>
+                        <th>ملحوظة</th>
+                      </tr>
+                  </table>
+    </div>
+</div>
+<!-- <h6 id="noPrint">Fit the Invoice Data on the window size!</h6> -->
+<!-- <input type="button" class="button button1" id="noPrint" value="Download Invoice" onclick="myFunction()"> -->
+<input type="button" class="button button1" id="noPrint" value="Print" onclick="window.print();" id="noPrint">
+<input type="button" class="button button2" id="noPrint" value="Download" onclick="window.print();" id="noPrint">
+  <!-- <button onclick="window.print();" id="noPrint">
+  Print Me
+  </button> -->
+<script>
+  let count = 0
+    function myFunction() {
+        
+        let element = document.getElementById('element')
+ html2pdf(element,{
+    margin:10,
+    filename:'output.pdf',
+    image:{type:'jpeg',quality:0.98},
+    html2canvas:{scale:2,logging:true,dpi:192,letterRendering:true},
+    jsPDF:{unit:'cm',format:'a1',orientation:'portrait'}
+ })
+ count+=1
+}
+</script>
+{%endblock content%}
+
+<!-- show invoice : inner_width = 712 & inner_height = 623 -->
+<!-- download invoice : inner_width = 703 & inner_height = 615  -->
+
+

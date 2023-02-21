@@ -1,0 +1,46 @@
+{% extends 'enroll/base2.html' %}
+{% block content %}
+<style>
+  .form-group{
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  h2{
+    background-color: #343a40;
+    border: 1px solid hsl(160, 91%, 9%);
+    color: white;
+  }
+
+  h4{
+    background-color: #28A745;
+    border: 1px solid hsl(160, 91%, 9%);
+    color: white;
+  }
+</style>
+<div class="row">
+    <div class="container mt-5">
+      <h2 class="text-center alert">INVOICE GENERATOR</h2>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  
+  
+  </style>
+<div class="row">
+ <div class="col-sm-12">
+  <h4 class="text-center alert alert-primary">Your calculations are saved successfully!</h4>
+   <a href="{% url 'generate_qr' invoice_data.invoice_id %}"><input type="button" class="btn btn-success" value="Generate QR"></a>
+ </div>
+ </div>
+{% endblock content %}
